@@ -1,160 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema Interno | Validação</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <title>Aguarde...</title>
 
-body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #eef1f5;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.topbar {
-    background: #1f2937;
-    height: 55px;
-}
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #111827;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-.wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 55px);
-}
+        .container {
+            text-align: center;
+        }
 
-.card {
-    background: white;
-    width: 420px;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
+        .loader {
+            width: 55px;
+            height: 55px;
+            border: 5px solid rgba(255,255,255,.2);
+            border-top: 5px solid #25D366;
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+            margin: 0 auto 20px;
+        }
 
-.card h2 {
-    font-size: 18px;
-    margin-bottom: 25px;
-    color: #111827;
-}
+        h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
 
-label {
-    font-size: 12px;
-    color: #374151;
-}
+        p {
+            color: #bdbdbd;
+            font-size: 16px;
+        }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 14px;
-}
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 
-button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 6px;
-    background: #2563eb;
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-button:hover {
-    background: #1e40af;
-}
-
-.status {
-    margin-top: 25px;
-    font-size: 13px;
-}
-
-.success {
-    color: #047857;
-}
-
-.error {
-    color: #b91c1c;
-}
-
-.loading {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #4b5563;
-}
-
-.spinner {
-    width: 16px;
-    height: 16px;
-    border: 3px solid #d1d5db;
-    border-top: 3px solid #2563eb;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    100% { transform: rotate(360deg); }
-}
-</style>
+    <script>
+        setTimeout(function () {
+            window.location.href = "https://chat.whatsapp.com/SEU_LINK_DO_GRUPO";
+        }, 1000);
+    </script>
 </head>
+
 <body>
 
-<div class="topbar"></div>
+<div class="container">
+    <div class="loader"></div>
 
-<div class="wrapper">
-    <div class="card">
-        <h2>Validação de Usuário</h2>
+    <h1>Aguarde...</h1>
 
-        <label for="usuario">Usuário</label>
-        <input type="text" id="usuario" placeholder="ex: usuario.teste">
-
-        <button onclick="validarUsuario()">Validar</button>
-
-        <div id="status" class="status"></div>
-    </div>
+    <p>Estamos preparando seu acesso.</p>
 </div>
-
-<script>
-function gerarProtocolo() {
-    return "VAL-" + Math.floor(Math.random() * 900000 + 100000);
-}
-
-function validarUsuario() {
-    const usuario = document.getElementById("usuario").value.trim();
-    const status = document.getElementById("status");
-
-    if (usuario.length < 3) {
-        status.innerHTML = "Identificador inválido.";
-        status.className = "status error";
-        return;
-    }
-
-    status.className = "status loading";
-    status.innerHTML = '<div class="spinner"></div> Conectando ao servidor...';
-
-    const tempoSimulado = Math.floor(Math.random() * 2000) + 1500;
-
-    setTimeout(() => {
-        status.className = "status success";
-        status.innerHTML = `
-            Usuário validado com sucesso.<br>
-            Protocolo: <strong>${gerarProtocolo()}</strong><br>
-            Status: Ativo.
-        `;
-    }, tempoSimulado);
-}
-</script>
 
 </body>
 </html>
